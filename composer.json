@@ -24,7 +24,7 @@
     ],
     "require": {
         "laravel/nova": "^4.0",
-        "rinvex/countries": "dev-master"
+        "rinvex/countries": "^9.0"
     },
     "autoload": {
         "psr-4": {
