@@ -1,0 +1,46 @@
+{
+    "name": "wamesk/laravel-nova-vat-rate",
+    "description": "Laravel Nova 4 Vat rates",
+    "keywords": [
+        "laravel",
+        "nova",
+        "nova4",
+        "vat rates",
+        "vat",
+        "tax"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "WAME s.r.o.",
+            "homepage": "https://wame.sk"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "require": {
+        "laravel/nova": "^4.0",
+        "rinvex/countries": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wame\\LaravelNovaVatRate\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wame\\LaravelNovaVatRate\\PackageServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
