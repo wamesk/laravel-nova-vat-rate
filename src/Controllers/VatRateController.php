@@ -4,6 +4,7 @@ namespace Wame\LaravelNovaVatRate\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\VatRate;
+use Wame\Utils\Helpers\Translator;
 
 class VatRateController extends Controller
 {
@@ -58,6 +59,29 @@ class VatRateController extends Controller
     public static function getListByCountry($countryCode)
     {
         return VatRate::where('country_code', $countryCode)->orderByDesc('value')->get();
+    }
+
+    /**
+     * @param string|null $countryCode
+     * @return array
+     */
+    public static function getListForSelect($countryCode = null): array
+    {
+        $return = [];
+
+        if ($countryCode) {
+            $list = self::getListByCountry($countryCode);
+        } else {
+            $list = VatRate::query()->orderBy('country_code')->orderByDesc('value')->get();
+        }
+
+        $types = Translator::arrayValue(config('wame-vat-rate.type'));
+
+        foreach ($list as $item) {
+            $return[$item->id] = $item->country_code . ' - ' . $types[$item->type] . ' - ' . $item->value . '%';
+        }
+
+        return $return;
     }
 
 }
