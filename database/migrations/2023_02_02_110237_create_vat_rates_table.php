@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('type', 13);
             $table->unsignedTinyInteger('value');
             $table->unique(['country_code', 'type', 'value']);
-            $table->timestamps();
+            $table->datetimes();
         });
     }
 
