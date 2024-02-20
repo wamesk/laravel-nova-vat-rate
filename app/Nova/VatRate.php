@@ -10,6 +10,7 @@ use ShuvroRoy\NovaTabs\Tabs;
 use ShuvroRoy\NovaTabs\Traits\HasTabs;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Wame\LaravelNovaVatRate\Enums\VatRateTypeEnum;
 use Wame\Utils\Helpers\Translator;
 
 class VatRate extends BaseResource
@@ -65,8 +66,8 @@ class VatRate extends BaseResource
 
                     Select::make(__('vat_rate.field.type'), 'type')
                         ->help(__('vat_rate.field.type.help'))
-                        ->options(Translator::arrayValue(config('wame-vat-rate.type')))
-                        ->displayUsing(fn () => __(config('wame-vat-rate.type.' . $this->type, $this->type)))
+                        ->options(VatRateTypeEnum::toArray())
+                        ->displayUsing(fn () => VatRateTypeEnum::from($this->type)->title())
                         ->searchable()
                         ->sortable()
                         ->filterable()

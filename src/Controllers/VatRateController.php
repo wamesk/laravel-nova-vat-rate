@@ -4,6 +4,7 @@ namespace Wame\LaravelNovaVatRate\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\VatRate;
+use Wame\LaravelNovaVatRate\Enums\VatRateTypeEnum;
 use Wame\Utils\Helpers\Translator;
 
 class VatRateController extends Controller
@@ -75,10 +76,8 @@ class VatRateController extends Controller
             $list = VatRate::query()->orderBy('country_code')->orderByDesc('value')->get();
         }
 
-        $types = Translator::arrayValue(config('wame-vat-rate.type'));
-
         foreach ($list as $item) {
-            $return[$item->id] = $item->country_code . ' - ' . $types[$item->type] . ' - ' . $item->value . '%';
+            $return[$item->id] = $item->country_code . ' - ' . VatRateTypeEnum::from($item->type)->title() . ' - ' . $item->value . '%';
         }
 
         return $return;
