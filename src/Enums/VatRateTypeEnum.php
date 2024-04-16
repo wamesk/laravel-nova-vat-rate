@@ -24,4 +24,9 @@ enum VatRateTypeEnum: string
             self::PARKING => __('vat_rate.type.parking'),
         };
     }
+
+    public static function fromType(string $type): string
+    {
+        return self::tryFrom($type) ? self::from($type)->title() : $type;
+    }
 }
