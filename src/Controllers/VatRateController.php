@@ -77,7 +77,7 @@ class VatRateController extends Controller
         }
 
         foreach ($list as $item) {
-            $return[$item->id] = $item->country_code . ' - ' . VatRateTypeEnum::from($item->type)->title() . ' - ' . $item->value . '%';
+            $return[$item->id] = $item->country_code . ' - ' . VatRateTypeEnum::fromType($item->type) . ' - ' . $item->value . '%';
         }
 
         return $return;
