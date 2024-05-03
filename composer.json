@@ -1,6 +1,7 @@
 {
     "name": "wamesk/laravel-nova-vat-rate",
     "description": "Laravel Nova 4 Vat rates",
+    "version": "2.0.0",
     "keywords": [
         "laravel",
         "nova",
@@ -34,7 +35,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Wame\\LaravelNovaVatRate\\PackageServiceProvider"
+                "Wame\\LaravelNovaVatRate\\Providers\\PackageServiceProvider"
             ]
         }
     },

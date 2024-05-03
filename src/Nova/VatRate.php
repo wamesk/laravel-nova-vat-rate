@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Nova;
+namespace Wame\LaravelNovaVatRate\Nova;
 
+use App\Nova\Resource;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use ShuvroRoy\NovaTabs\Tab;
 use ShuvroRoy\NovaTabs\Tabs;
 use ShuvroRoy\NovaTabs\Traits\HasTabs;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use Wame\LaravelNovaCountry\Nova\Country;
 use Wame\LaravelNovaVatRate\Enums\VatRateTypeEnum;
-use Wame\Utils\Helpers\Translator;
 
-class VatRate extends BaseResource
+class VatRate extends Resource
 {
     use HasTabs;
 
@@ -22,21 +23,21 @@ class VatRate extends BaseResource
      *
      * @var string
      */
-    public static $model = \App\Models\VatRate::class;
+    public static string $model = \App\Models\VatRate::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = ['type', ' ', 'value', '%'];
+    public static string|array $title = ['type', ' ', 'value', '%'];
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = [
+    public static array $search = [
         'id',
     ];
 

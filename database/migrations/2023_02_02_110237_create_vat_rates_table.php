@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('vat_rates', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->char('country_code', 2)->constrained('countries', 'code')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->char('country_id', 2)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('type', 13);
             $table->unsignedTinyInteger('value');
-            $table->unique(['country_code', 'type', 'value']);
+            $table->unique(['country_id', 'type', 'value']);
             $table->datetimes();
         });
     }

@@ -14,10 +14,6 @@ composer require wamesk/laravel-nova-vat-rate
 ```
 
 ```bash
-php artisan vendor:publish
-```
-
-```bash
 php artisan migrate
 ```
 
@@ -26,9 +22,10 @@ php artisan db:seed --class=VatRateSeeder
 ```
 
 Add Policy to `./app/Providers/AuthServiceProvider.php`
+
 ```php
 protected $policies = [
-    'App\Models\VatRate' => 'App\Policies\VatRatePolicy',
+    'App\Models\VatRate' => 'Wame\LaravelNovaVatRate\Policies\VatRatePolicy',
 ];
 ```
 

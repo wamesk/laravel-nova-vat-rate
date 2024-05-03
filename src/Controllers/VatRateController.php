@@ -3,9 +3,9 @@
 namespace Wame\LaravelNovaVatRate\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\VatRate;
+use Illuminate\Database\Eloquent\Collection;
 use Wame\LaravelNovaVatRate\Enums\VatRateTypeEnum;
-use Wame\Utils\Helpers\Translator;
+use Wame\LaravelNovaVatRate\Models\VatRate;
 
 class VatRateController extends Controller
 {
@@ -20,7 +20,7 @@ class VatRateController extends Controller
         $vatRatesData = $data?->getVatRates();
 
         if ($data && $vatRatesData) {
-            $exists = VatRate::where(['country_code' => $countryCode])->get();
+            $exists = VatRate::whereCountryId($countryCode)->get();
 
             if (count($exists) > 0) {
                 foreach ($exists as $item) {
@@ -41,12 +41,14 @@ class VatRateController extends Controller
                     foreach ($values as $value) {
                         if (!$value) continue;
 
-                        $vatRate = ['country_code' => $countryCode, 'type' => $type, 'value' => $value];
-                        VatRate::updateOrCreate($vatRate, $vatRate);
+                        $vatRate = ['country_id' => $countryCode, 'type' => $type, 'value' => $value];
+                        VatRate::query()
+                            ->updateOrCreate($vatRate, $vatRate);
                     }
                 } else {
-                    $vatRate = ['country_code' => $countryCode, 'type' => $type, 'value' => $values];
-                    VatRate::updateOrCreate($vatRate, $vatRate);
+                    $vatRate = ['country_id' => $countryCode, 'type' => $type, 'value' => $values];
+                    VatRate::query()
+                        ->updateOrCreate($vatRate, $vatRate);
                 }
             }
         }
@@ -57,27 +59,27 @@ class VatRateController extends Controller
      *
      * @return mixed
      */
-    public static function getListByCountry($countryCode)
+    public static function getListByCountry(string $countryCode): Collection
     {
-        return VatRate::where('country_code', $countryCode)->orderByDesc('value')->get();
+        return VatRate::query()->where('country_id', $countryCode)->orderByDesc('value')->get();
     }
 
     /**
      * @param string|null $countryCode
      * @return array
      */
-    public static function getListForSelect($countryCode = null): array
+    public static function getListForSelect(?string $countryCode = null): array
     {
         $return = [];
 
         if ($countryCode) {
             $list = self::getListByCountry($countryCode);
         } else {
-            $list = VatRate::query()->orderBy('country_code')->orderByDesc('value')->get();
+            $list = VatRate::query()->orderBy('country_id')->orderByDesc('value')->get();
         }
 
         foreach ($list as $item) {
-            $return[$item->id] = $item->country_code . ' - ' . VatRateTypeEnum::fromType($item->type) . ' - ' . $item->value . '%';
+            $return[$item->id] = $item->country_id . ' - ' . VatRateTypeEnum::fromType($item->type) . ' - ' . $item->value . '%';
         }
 
         return $return;
