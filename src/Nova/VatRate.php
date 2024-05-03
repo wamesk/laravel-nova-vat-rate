@@ -23,21 +23,21 @@ class VatRate extends Resource
      *
      * @var string
      */
-    public static string $model = \App\Models\VatRate::class;
+    public static string $model = \Wame\LaravelNovaVatRate\Models\VatRate::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static string|array $title = ['type', ' ', 'value', '%'];
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static array $search = [
+    public static $search = [
         'id',
     ];
 
@@ -47,15 +47,15 @@ class VatRate extends Resource
      * @param NovaRequest $request
      * @return array
      */
-    public function fields(NovaRequest $request)
+    public function fields(NovaRequest $request): array
     {
         return [
-            Tabs::make(__('vat_rate.detail', ['title' => $this->title]), [
-                Tab::make(__('vat_rate.singular'), [
+            Tabs::make(__('laravel-nova-vat-rate::vat_rate.detail', ['title' => $this->title]), [
+                Tab::make(__('laravel-nova-vat-rate::vat_rate.singular'), [
                     ID::make()->onlyOnForms(),
 
-                    BelongsTo::make(__('vat_rate.field.country'), 'country', Country::class)
-                        ->help(__('vat_rate.field.country.help'))
+                    BelongsTo::make(__('laravel-nova-vat-rate::vat_rate.field.country'), 'country', Country::class)
+                        ->help(__('laravel-nova-vat-rate::vat_rate.field.country.help'))
                         ->withSubtitles()
                         ->withoutTrashed()
                         ->showCreateRelationButton()
@@ -65,8 +65,8 @@ class VatRate extends Resource
                         ->rules('required')
                         ->showOnPreview(),
 
-                    Select::make(__('vat_rate.field.type'), 'type')
-                        ->help(__('vat_rate.field.type.help'))
+                    Select::make(__('laravel-nova-vat-rate::vat_rate.field.type'), 'type')
+                        ->help(__('laravel-nova-vat-rate::vat_rate.field.type.help'))
                         ->options(VatRateTypeEnum::toArray())
                         ->displayUsing(fn () => VatRateTypeEnum::from($this->type)->title())
                         ->searchable()
@@ -76,8 +76,8 @@ class VatRate extends Resource
                         ->rules('required')
                         ->showOnPreview(),
 
-                    Number::make(__('vat_rate.field.value'), 'value')
-                        ->help(__('vat_rate.field.value.help'))
+                    Number::make(__('laravel-nova-vat-rate::vat_rate.field.value'), 'value')
+                        ->help(__('laravel-nova-vat-rate::vat_rate.field.value.help'))
                         ->displayUsing(fn () => $this->value . ' %')
                         ->min(0)
                         ->max(100)
@@ -92,48 +92,18 @@ class VatRate extends Resource
         ];
     }
 
-    /**
-     * Get the cards available for the request.
-     *
-     * @param NovaRequest $request
-     * @return array
-     */
-    public function cards(NovaRequest $request)
+    public static function label(): string
     {
-        return [];
+        return __('laravel-nova-vat-rate::vat_rate.label');
     }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param NovaRequest $request
-     * @return array
-     */
-    public function filters(NovaRequest $request)
+    public static function createButtonLabel(): string
     {
-        return [];
+        return __('laravel-nova-vat-rate::vat_rate.create.button');
     }
 
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param NovaRequest $request
-     * @return array
-     */
-    public function lenses(NovaRequest $request)
+    public static function updateButtonLabel(): string
     {
-        return [];
+        return __('laravel-nova-vat-rate::vat_rate.update.button');
     }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param NovaRequest $request
-     * @return array
-     */
-    public function actions(NovaRequest $request)
-    {
-        return [];
-    }
-
 }

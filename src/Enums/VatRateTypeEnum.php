@@ -17,12 +17,7 @@ enum VatRateTypeEnum: string
 
     public function title(): string
     {
-        return match ($this) {
-            self::STANDARD => __('vat_rate.type.standard'),
-            self::REDUCED => __('vat_rate.type.reduced'),
-            self::SUPER_REDUCED => __('vat_rate.type.super_reduced'),
-            self::PARKING => __('vat_rate.type.parking'),
-        };
+        return __('laravel-nova-vat-rate::vat_rate.type.' . $this->value);
     }
 
     public static function fromType(string $type): string
