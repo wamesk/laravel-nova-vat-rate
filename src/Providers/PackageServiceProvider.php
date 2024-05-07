@@ -20,6 +20,8 @@ class PackageServiceProvider extends ServiceProvider
         Nova::resources([
             VatRate::class,
         ]);
+
+        $this->loadTranslationsFrom(__DIR__ . '/../../resources/lang', 'laravel-nova-vat-rate');
     }
 
     /**
