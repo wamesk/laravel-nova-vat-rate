@@ -24,12 +24,20 @@ class VatRateController extends Controller
 
             if (count($exists) > 0) {
                 foreach ($exists as $item) {
+                    if (!isset($vatRatesData[$item->type])) {
+                        $item->delete();
+                    }
+
                     $vatRateData = $vatRatesData[$item->type];
 
                     if (is_array($vatRateData)) {
-                        if (!in_array($item->value, $vatRateData)) $item->delete();
+                        if (!in_array($item->value, $vatRateData)) {
+                            $item->delete();
+                        }
                     } else {
-                        if (!($item->value === $vatRateData)) $item->delete();
+                        if (!($item->value === $vatRateData)) {
+                            $item->delete();
+                        }
                     }
                 }
             }
