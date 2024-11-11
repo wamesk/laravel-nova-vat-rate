@@ -26,6 +26,7 @@ class VatRateController extends Controller
                 foreach ($exists as $item) {
                     if (!isset($vatRatesData[$item->type])) {
                         $item->delete();
+                        continue;
                     }
 
                     $vatRateData = $vatRatesData[$item->type];
