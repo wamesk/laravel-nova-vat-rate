@@ -1,6 +1,7 @@
 {
     "name": "wamesk/laravel-nova-vat-rate",
     "description": "Laravel Nova 4 Vat rates",
+    "version": "1.0.1",
     "keywords": [
         "laravel",
         "nova",
