@@ -6,7 +6,7 @@ namespace Wame\LaravelNovaVatRate\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Wame\LaravelNovaCountry\Models\Country;
-use Wame\LaravelNovaVatRate\Controllers\VatRateController;
+use Wame\LaravelNovaVatRate\Services\VatRateService;
 
 /**
  * php artisan db:seed --class=VatRateSeeder
@@ -17,7 +17,7 @@ class VatRateSeeder extends Seeder
     {
         $list = Country::all();
         foreach ($list as $item) {
-            VatRateController::addVatRatesToCountry($item->id);
+            VatRateService::addVatRatesToCountry($item->id);
         }
     }
 }

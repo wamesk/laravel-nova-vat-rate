@@ -8,16 +8,12 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use ShuvroRoy\NovaTabs\Tab;
-use ShuvroRoy\NovaTabs\Tabs;
-use ShuvroRoy\NovaTabs\Traits\HasTabs;
+use Laravel\Nova\Tabs\Tab;
 use Wame\LaravelNovaCountry\Nova\Country;
 use Wame\LaravelNovaVatRate\Enums\VatRateTypeEnum;
 
 class VatRate extends Resource
 {
-    use HasTabs;
-
     /**
      * The model the resource corresponds to.
      *
@@ -50,7 +46,7 @@ class VatRate extends Resource
     public function fields(NovaRequest $request): array
     {
         return [
-            Tabs::make(__('laravel-nova-vat-rate::vat_rate.detail', ['title' => $this->title]), [
+            Tab::group(null, [
                 Tab::make(__('laravel-nova-vat-rate::vat_rate.singular'), [
                     ID::make()->onlyOnForms(),
 

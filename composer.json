@@ -1,11 +1,11 @@
 {
     "name": "wamesk/laravel-nova-vat-rate",
-    "description": "Laravel Nova 4 Vat rates",
-    "version": "2.0.5",
+    "description": "Laravel Nova 5 Vat rates",
+    "version": "5.0.0",
     "keywords": [
         "laravel",
         "nova",
-        "nova4",
+        "nova5",
         "vat rates",
         "vat",
         "tax"
@@ -17,14 +17,8 @@
             "homepage": "https://wame.sk"
         }
     ],
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
-        }
-    ],
     "require": {
-        "laravel/nova": "^4.0",
+        "laravel/nova": "^5.0",
         "rinvex/countries": "^9.0"
     },
     "autoload": {
@@ -36,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Wame\\LaravelNovaVatRate\\Providers\\PackageServiceProvider"
+                "Wame\\LaravelNovaVatRate\\Providers\\LaravelNovaVatRateServiceProvider"
             ]
         }
     },
