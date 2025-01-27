@@ -1,5 +1,4 @@
-# Laravel Nova 5 Vat rates
-
+# Laravel Nova Vat rates
 
 
 ## Requirements

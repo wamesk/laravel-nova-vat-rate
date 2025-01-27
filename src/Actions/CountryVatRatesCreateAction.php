@@ -13,7 +13,7 @@ class CountryVatRatesCreateAction
      *
      * @return void
      */
-    public static function handle($countryCode): void
+    public function handle($countryCode): void
     {
         $data = country($countryCode);
         $vatRatesData = $data?->getVatRates();

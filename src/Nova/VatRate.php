@@ -64,7 +64,7 @@ class VatRate extends Resource
                     Select::make(__('laravel-nova-vat-rate::vat_rate.field.type'), 'type')
                         ->help(__('laravel-nova-vat-rate::vat_rate.field.type.help'))
                         ->options(VatRateTypeEnum::toArray())
-                        ->displayUsing(fn () => VatRateTypeEnum::from($this->type)->title())
+                        ->displayUsing(fn () => VatRateTypeEnum::fromType($this->type))
                         ->searchable()
                         ->sortable()
                         ->filterable()
