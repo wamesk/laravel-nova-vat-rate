@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Nova;
 use Wame\LaravelNovaVatRate\Nova\VatRate;
 
-class PackageServiceProvider extends ServiceProvider
+class LaravelNovaVatRateServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.

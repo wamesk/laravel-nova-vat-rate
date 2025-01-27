@@ -2,7 +2,6 @@
 
 namespace Wame\LaravelNovaVatRate\Models;
 
-use App\Models\VatRate;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasVatRate

@@ -1,10 +1,9 @@
-# Laravel Nova 4 Vat rates
-
+# Laravel Nova Vat rates
 
 
 ## Requirements
 
-- `laravel/nova: ^4.0`
+- `laravel/nova: ^5.0`
 
 
 ## Installation
@@ -17,15 +16,4 @@ composer require wamesk/laravel-nova-vat-rate
 php artisan migrate
 ```
 
-```bash
-php artisan db:seed --class=VatRateSeeder
-```
-
-Add Policy to `./app/Providers/AuthServiceProvider.php`
-
-```php
-protected $policies = [
-    'App\Models\VatRate' => 'Wame\LaravelNovaVatRate\Policies\VatRatePolicy',
-];
-```
 

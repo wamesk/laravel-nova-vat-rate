@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Wame\LaravelNovaCountry\Models\Country;
 use Wame\LaravelNovaCountry\Models\HasCountry;
+use Wame\LaravelNovaVatRate\Enums\VatRateTypeEnum;
 
 /**
  * @property int $id
@@ -36,8 +37,18 @@ class VatRate extends Model
     use HasUlids;
 
     protected $fillable = [
-        'country_code',
+        'country_id',
         'type',
         'value',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'type' => VatRateTypeEnum::class,
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
 }

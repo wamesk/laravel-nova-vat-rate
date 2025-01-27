@@ -20,8 +20,12 @@ enum VatRateTypeEnum: string
         return __('laravel-nova-vat-rate::vat_rate.type.' . $this->value);
     }
 
-    public static function fromType(string $type): string
+    public static function fromType(VatRateTypeEnum|string $type): string
     {
+        if ($type instanceof VatRateTypeEnum) {
+            $type = $type->value;
+        }
+
         return self::tryFrom($type) ? self::from($type)->title() : $type;
     }
 }
